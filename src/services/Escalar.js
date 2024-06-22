@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { jogadorService } from "./Jogador";
+import jogador from "./Jogador";
 
 const Escalar = () => {
     const [nome, setNome] = useState("");
     const [posicao, setPosicao] = useState("");
     const [imagem, setImagem] = useState(null);
-    const [idade, setIdade] = useState()
+    const [idade, setIdade] = useState(0)
     const chamar = async () => {
-        await jogadorService.post({nome,posicao,imagem,idade});
+        await jogador.post({nome,posicao,imagem,idade});
     }
    
     return  <main>

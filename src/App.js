@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { jogadorService } from './services/Jogador';
+import Jogador from './services/Jogador';
 
 function App() {
     const [lista,setLista] = useState([]);
 
     useEffect(() => {
       const chamar = async () => {
-        const ret = await jogadorService.get()
+        const ret = await Jogador.get()
         setLista(ret);
       }
       chamar();
