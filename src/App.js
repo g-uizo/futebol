@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+import { jogadorService } from './services/Jogador';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    const [lista,setLista] = useState([]);
 
-export default App;
+    useEffect(() => {
+      const chamar = async () => {
+        const ret = await jogadorService.get()
+        setLista(ret);
+      }
+      chamar();
+    }, [])
+    return (
+      <main>
+        <h1>Jogadores</h1>
+        <section>
+          {lista ? lista.map((jogador, posicao) => (
+            <h1 key={posicao}>{jogador.nome}</h1>
+          )): (
+            <p>Jogadores não encontrados</p>
+          )}
+        </section>
+        
+      </main>
+
+      )
+    }
+    
+    export default App;
